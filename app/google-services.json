@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "791658295665",
+    "firebase_url": "https://slugcentral-204301.firebaseio.com",
+    "project_id": "slugcentral-204301",
+    "storage_bucket": "slugcentral-204301.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791658295665:android:21178d185581baf5",
+        "android_client_info": {
+          "package_name": "com.example.kevin.slugcentral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791658295665-kh2g473m0ta0c7huul0o8k95vgaf5up5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [{ "current_key": "" }],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
