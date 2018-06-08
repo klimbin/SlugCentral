@@ -98,4 +98,24 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="yourGE">G.E. Requirements Checklist</string>
+    <string name="CC">Cross-Cultural Anaylsis (CC)</string>
+    <string name="ER">Ethnicity And Race (ER)</string>
+    <string name="IM">Interpreting Arts and Media (IM)</string>
+    <string name="MF">Mathematical and Formal Reasoning (MF)</string>
+    <string name="SI">Scientific Inquiry (SI)</string>
+    <string name="SR">Statistical Reasoning (SR)</string>
+    <string name="TA">Textual Anaylsis and Interpretation (TA)</string>
+    <string name="prespectives">Prespectives</string>
+    <string name="pe_e">Environmental Awareness (PE-E)</string>
+    <string name="pe_h">Human Behavior (PE-H)</string>
+    <string name="pe_t">Technology and Society (PE-T)</string>
+    <string name="practice">Practice</string>
+    <string name="pr_e">Collaborative Endeavor (PR-E)</string>
+    <string name="pr_c">Creative Process (PR-C)</string>
+    <string name="pr_s">Service Learning (PR-S)</string>
+    <string name="comp">Composition</string>
+    <string name="c1">C1</string>
+    <string name="c2">C2</string>
+    <string name="complete">Complete</string>
 </resources>

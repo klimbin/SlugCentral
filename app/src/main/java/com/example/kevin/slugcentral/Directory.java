@@ -61,7 +61,7 @@ public class Directory extends AppCompatActivity
         buttonGE.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //pop the activity off the stack
-                Intent i = new Intent(context, ScheduleActivity.class);
+                Intent i = new Intent(context, GEActivity.class);
                 startActivity(i);
             }
         });
