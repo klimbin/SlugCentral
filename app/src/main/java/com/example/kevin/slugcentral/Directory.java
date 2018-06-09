@@ -18,7 +18,7 @@ import android.widget.Button;
 
 public class Directory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +30,9 @@ public class Directory extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(context,SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
@@ -50,7 +51,6 @@ public class Directory extends AppCompatActivity
         Button buttonSchedule = findViewById(R.id.buttonSchedule);
         Button buttonGE = findViewById(R.id.buttonGE);
         Button buttonMap = findViewById(R.id.buttonMap);
-        final Context context = this;
         buttonSchedule.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //pop the activity off the stack
