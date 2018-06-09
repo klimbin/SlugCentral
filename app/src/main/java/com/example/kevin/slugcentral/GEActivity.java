@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 public class GEActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    CheckBox CC,ER,IM,MF,SR,TA,PEE,PEH,PET,PRE,PRC,PRS,C1,C2;
+    CheckBox CC,ER,IM,MF,SI,SR,TA,PEE,PEH,PET,PRE,PRC,PRS,C1,C2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,7 @@ public class GEActivity extends AppCompatActivity {
         ER = (CheckBox)findViewById(R.id.checkER);
         IM = (CheckBox)findViewById(R.id.checkIM);
         MF = (CheckBox)findViewById(R.id.checkMF);
+        SI = (CheckBox)findViewById(R.id.checkSI);
         SR = (CheckBox)findViewById(R.id.checkSR);
         TA = (CheckBox)findViewById(R.id.checkTA);
         PEE = (CheckBox)findViewById(R.id.checkPEE);
@@ -53,6 +54,11 @@ public class GEActivity extends AppCompatActivity {
             MF.setChecked(true); //it was checked
         } else{
             MF.setChecked(false); //it was NOT checked
+        }
+        if (pref.getBoolean("checkSI", false)){ //false is default value
+            SI.setChecked(true); //it was checked
+        } else{
+            SI.setChecked(false); //it was NOT checked
         }
         if (pref.getBoolean("checkSR", false)){ //false is default value
             SR.setChecked(true); //it was checked
@@ -113,6 +119,7 @@ public class GEActivity extends AppCompatActivity {
         editor.putBoolean("checkER", ER.isChecked());
         editor.putBoolean("checkIM", IM.isChecked());
         editor.putBoolean("checkMF", MF.isChecked());
+        editor.putBoolean("checkSI", SI.isChecked());
         editor.putBoolean("checkSR", SR.isChecked());
         editor.putBoolean("checkTA", TA.isChecked());
         editor.putBoolean("checkPEE", PEE.isChecked());
