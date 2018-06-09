@@ -45,11 +45,20 @@
         android:layout_marginLeft="111dp"
         android:layout_marginRight="111dp"
         android:layout_marginStart="111dp"
-        android:layout_marginTop="231dp"
+        android:layout_marginTop="38dp"
         android:text="@string/calendar"
         android:textAppearance="@android:style/TextAppearance.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directoryLogo"
         tools:text="@string/calendar" />
+
+    <ImageView
+        android:id="@+id/directoryLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/slugcentral" />
+
 </android.support.constraint.ConstraintLayout>
