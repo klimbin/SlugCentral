@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ScheduleActivity">
 
+    <!--app:todayBackgroundColor="#1848adff"-->
     <com.alamkanak.weekview.WeekView
         android:id="@+id/weekView"
         android:layout_width="match_parent"
@@ -24,17 +25,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:noOfVisibleDays="3"
         app:textSize="12sp"
-        app:todayBackgroundColor="#1848adff"  />
+        app:todayBackgroundColor="#05000000"
+        app:todayHeaderTextColor="#8f000000"
+        app:xScrollingSpeed="0" />
 
-    <Button
-        android:id="@+id/AddToCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="515dp"
-        android:text="@string/add"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/add" />
+    <!--<Button-->
+    <!--android:id="@+id/AddToCalendar"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="32dp"-->
+    <!--android:layout_marginStart="32dp"-->
+    <!--android:layout_marginTop="515dp"-->
+    <!--android:text="@string/add"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--tools:text="@string/add" />-->
+
 </android.support.constraint.ConstraintLayout>

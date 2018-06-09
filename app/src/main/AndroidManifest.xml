@@ -32,6 +32,7 @@
         <activity
             android:name=".BasicActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".SearchActivity"></activity>
         <activity
             android:name=".Directory"
             android:label="@string/title_activity_directory"
