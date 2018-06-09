@@ -49,7 +49,7 @@ public class Directory extends AppCompatActivity
         super.onResume();
         Button buttonSchedule = findViewById(R.id.buttonSchedule);
         Button buttonGE = findViewById(R.id.buttonGE);
-        Button buttonSearch = findViewById(R.id.buttonSearch);
+        Button buttonMap = findViewById(R.id.buttonMap);
         final Context context = this;
         buttonSchedule.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -65,10 +65,10 @@ public class Directory extends AppCompatActivity
                 startActivity(i);
             }
         });
-        buttonSearch.setOnClickListener(new Button.OnClickListener() {
+        buttonMap.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //pop the activity off the stack
-                Intent i = new Intent(context, SearchActivity.class);
+                Intent i = new Intent(context, MapsActivity.class);
                 startActivity(i);
             }
         });

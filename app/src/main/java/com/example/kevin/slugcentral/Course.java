@@ -3,7 +3,7 @@ package com.example.kevin.slugcentral;
 // class for courses and sections/labs
 public class Course {
     private int courseId, startTime, endTime;
-    private String name, instructor, location, meetingDays;
+    private String name, instructor, classroom, meetingDays;
 
     public Course(){
 
@@ -15,13 +15,13 @@ public class Course {
 
     //course times are specified in this format 00:00
     //course meetingDays (e.g. Monday, Wednesday, Friday)
-    public Course(int courseId, int startTime, int endTime, String name, String instructor, String location, String meetingDays) {
+    public Course(int courseId, int startTime, int endTime, String name, String instructor, String classroom, String meetingDays) {
         this.courseId = courseId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
         this.instructor = instructor;
-        this.location = location;
+        this.classroom = classroom;
         this.meetingDays = meetingDays;
     }
 
@@ -66,12 +66,20 @@ public class Course {
         this.instructor = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getClassroom() {
+        return classroom;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setClassroom(String classroom) {
+        this.classroom = classroom;
+    }
+
+    public String getMeetingDays() {
+        return meetingDays;
+    }
+
+    public void setMeetingDays(String meetingDays) {
+        this.meetingDays = meetingDays;
     }
 
     // public int getColor() {
