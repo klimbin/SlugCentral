@@ -32,8 +32,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         // Locate the ListView in list_view_item.xml
         list = (ListView) findViewById(R.id.listview);
-        list.setEnabled(false);
-        //list.setVisibility(View.INVISIBLE);
+        list.setVisibility(View.INVISIBLE);
 
         for (int i = 0; i < courseNameList.length; i++) {
             Course course = new Course(courseNameList[i]);
@@ -46,11 +45,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
-
-        // Locate the EditText in list_view_item.xml
-        editSearch = (SearchView) findViewById(R.id.search);
-        editSearch.setOnQueryTextListener(this);
-
 
         final Context context = this;
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,6 +70,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             }
 
         });
+
+        // Locate the EditText in list_view_item.xml
+        editSearch = (SearchView) findViewById(R.id.search);
+        editSearch.setOnQueryTextListener(this);
+
     }
 
     @Override
