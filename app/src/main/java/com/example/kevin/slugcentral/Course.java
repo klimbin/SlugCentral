@@ -82,6 +82,9 @@ public class Course {
         this.meetingDays = meetingDays;
     }
 
+    // for detail view
+    // public boolean timeConflicts(Course A, Course B) { return true; }
+
     // public int getColor() {
     //     return mColor;
     // }

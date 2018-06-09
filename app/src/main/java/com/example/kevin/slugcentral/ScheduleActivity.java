@@ -13,6 +13,16 @@ public class ScheduleActivity extends BasicActivity {
         // Populate the week view with some events.
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
 
+//        ArrayList<Course> arrayList = new ArrayList<Course>();
+//        for(int i = 0; i < arrayList.size(); i++) {
+//
+//
+//            //check class meetingdays and add weekviewevents for those days
+//            //arrayList.get(i).getMeetingDays()
+//            WeekViewEvent event = new WeekViewEvent(arrayList.get(i).getId(), arrayList.get(i).getName(), arrayList.get(i).getClassroom()
+//                                                  , arrayList.get(i).getStartTime(), arrayList.get(i).endTime());
+//        }
+
         Calendar startTime = Calendar.getInstance();
         startTime.set(2018,6, 9);
         startTime.set(Calendar.HOUR_OF_DAY, 8);
