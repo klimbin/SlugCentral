@@ -10,11 +10,14 @@
         android:id="@+id/textView"
         android:layout_width="310dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="45dp"
         android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="26dp"
         android:text="@string/yourGE"
         android:textAppearance="@android:style/TextAppearance.Large"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/yourGE" />
@@ -41,12 +44,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <View
                 android:id="@+id/divider0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/CC"
                 android:layout_width="wrap_content"
@@ -167,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider5"/>
+                app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
             <View
                 android:id="@+id/divider6"
@@ -257,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider8"/>
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
             <View
                 android:id="@+id/divider9"
@@ -313,7 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider10"/>
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
             <View
                 android:id="@+id/divider11"
@@ -407,7 +412,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider13"/>
+                app:layout_constraintTop_toBottomOf="@+id/divider13" />
 
             <View
                 android:id="@+id/divider14"
@@ -416,6 +421,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkPRS" />
+
             <TextView
                 android:id="@+id/comp"
                 android:layout_width="wrap_content"
@@ -427,6 +433,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider14"
                 tools:text="@string/comp" />
+
             <TextView
                 android:id="@+id/C1"
                 android:layout_width="wrap_content"
@@ -438,13 +445,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/comp"
                 tools:text="@string/c1" />
+
             <CheckBox
                 android:id="@+id/checkC1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider14"/>
+                app:layout_constraintTop_toBottomOf="@+id/divider14" />
+
             <View
                 android:id="@+id/divider15"
                 android:layout_width="wrap_content"
@@ -452,6 +461,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkC1" />
+
             <TextView
                 android:id="@+id/C2"
                 android:layout_width="wrap_content"
@@ -463,6 +473,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider15"
                 tools:text="@string/c2" />
+
             <CheckBox
                 android:id="@+id/checkC2"
                 android:layout_width="wrap_content"
@@ -470,6 +481,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider15" />
+
             <View
                 android:id="@+id/divider16"
                 android:layout_width="wrap_content"
