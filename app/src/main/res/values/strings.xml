@@ -118,4 +118,9 @@
     <string name="c1">C1</string>
     <string name="c2">C2</string>
     <string name="complete">Complete</string>
+    <string name="mail_feedback">twong40@ucsc.edu</string>
+    <string name="mail_feedback_subject">Feedback On Your App: SlugCentral</string>
+    <string name="thankFeedback">Thanks For The Feedback :)</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="default_message">Hey There ;)</string>
 </resources>

@@ -110,17 +110,24 @@ public class Directory extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        final Context context = this;
+        Intent i;
         if (id == R.id.nav_signIn) {
-
+            i = new Intent(context,LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         } else if (id == R.id.nav_export) {
 
         }  else if (id == R.id.nav_settings) {
-
+            i = new Intent(context,SettingsActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_sendFeedBack) {
-
+            i = new Intent(context,FeedbackActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         } else if (id == R.id.nav_signOut) {
 
         }

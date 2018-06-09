@@ -62,10 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/divider"
@@ -90,10 +88,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <View
                 android:id="@+id/divider2"
@@ -115,13 +111,11 @@
 
             <CheckBox
                 android:id="@+id/checkIM"
-                android:layout_width="93dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
             <View
                 android:id="@+id/divider4"
@@ -146,10 +140,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
             <View
                 android:id="@+id/divider5"
@@ -174,10 +166,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider5"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider5"/>
 
             <View
                 android:id="@+id/divider6"
@@ -202,10 +192,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider6"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
             <View
                 android:id="@+id/divider7"
@@ -230,10 +218,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider7"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
             <View
                 android:id="@+id/divider8"
@@ -270,10 +256,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider8"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider8"/>
 
             <View
                 android:id="@+id/divider9"
@@ -300,10 +284,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider9"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
             <View
                 android:id="@+id/divider10"
@@ -330,10 +312,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider10"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider10"/>
 
             <View
                 android:id="@+id/divider11"
@@ -370,10 +350,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider11"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider11" />
 
             <View
                 android:id="@+id/divider12"
@@ -400,10 +378,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider12"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider12" />
 
             <View
                 android:id="@+id/divider13"
@@ -430,10 +406,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider13"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider13"/>
 
             <View
                 android:id="@+id/divider14"
@@ -469,10 +443,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider14"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider14"/>
             <View
                 android:id="@+id/divider15"
                 android:layout_width="wrap_content"
@@ -496,10 +468,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/complete"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider15"
-                tools:text="@string/complete" />
+                app:layout_constraintTop_toBottomOf="@+id/divider15" />
             <View
                 android:id="@+id/divider16"
                 android:layout_width="wrap_content"
