@@ -68,7 +68,7 @@ public class Directory extends AppCompatActivity
         buttonSearch.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //pop the activity off the stack
-                Intent i = new Intent(context, Directory.class);
+                Intent i = new Intent(context, SearchActivity.class);
                 startActivity(i);
             }
         });
