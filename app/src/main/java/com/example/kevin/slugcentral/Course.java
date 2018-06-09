@@ -9,6 +9,10 @@ public class Course {
 
     }
 
+    public Course(String name){
+        this.name = name;
+    }
+
     //course times are specified in this format 00:00
     //course meetingDays (e.g. Monday, Wednesday, Friday)
     public Course(int courseId, int startTime, int endTime, String name, String instructor, String location, String meetingDays) {
