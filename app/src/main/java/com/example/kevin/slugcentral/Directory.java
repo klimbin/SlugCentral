@@ -123,7 +123,12 @@ public class Directory extends AppCompatActivity
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         } else if (id == R.id.nav_share) {
-
+            //UPDATE LATER TO FIGURE OUT WHAT TO SEND
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, "Send Via"));
         } else if (id == R.id.nav_sendFeedBack) {
             i = new Intent(context,FeedbackActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
