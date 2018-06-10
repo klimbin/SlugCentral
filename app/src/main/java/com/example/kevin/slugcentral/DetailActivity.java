@@ -19,6 +19,8 @@ import java.io.ObjectOutputStream;
 
 public class DetailActivity extends AppCompatActivity {
 
+    public int position = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         String daysAndTime = i.getStringExtra("daysAndTime");
         String status = i.getStringExtra("status");
         String seats = i.getStringExtra("seats");
-        int position = i.getIntExtra("position", -1);
+        position = i.getIntExtra("position", -1);
 
         String caller = i.getStringExtra("caller");
 
@@ -76,9 +78,10 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO: send data to schedule activity to add class to schedule
 
-
                 //pop the activity off the stack
                 Intent i = new Intent(DetailActivity.this, ScheduleActivity.class);
+                i.putExtra("position", position);
+                i.putExtra("Action", "Add");
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
@@ -90,6 +93,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 //pop the activity off the stack
                 Intent i = new Intent(DetailActivity.this, ScheduleActivity.class);
+                i.putExtra("Action", "Remove");
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }

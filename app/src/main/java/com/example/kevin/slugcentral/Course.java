@@ -1,7 +1,9 @@
 package com.example.kevin.slugcentral;
 
+import java.io.Serializable;
+
 // class for courses and sections/labs
-public class Course {
+public class Course implements Serializable{
     private String name, daysTimes, instructor, classroom, courseId, enrolled, status;
 
     public Course(){

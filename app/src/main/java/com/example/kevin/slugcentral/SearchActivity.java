@@ -29,61 +29,19 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     ListView list;
     ListViewAdapter adapter;
     SearchView editSearch;
-    ArrayList<Course> arrayList = new ArrayList<Course>();
-    String tURL = "https://221c682f.ngrok.io/api/v1.0/courses/all/2000";
+    public static ArrayList<Course> allData = MainActivity.allData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        setContentView(R.layout.activity_search);
-        //https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-        //https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-
-
-        try {
-            //https://stackoverflow.com/questions/4328711/read-url-to-string-in-few-lines-of-java-code?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-            String jsonString = new Scanner(new URL(tURL).openStream(), "UTF-8").useDelimiter("\\A").next();
-
-            JSONArray jsonarray = new JSONArray(jsonString);
-
-            Course[] tempArray = new Course[jsonarray.length()];
-
-            for (int i = 0; i < jsonarray.length(); i++) {
-                JSONObject jsonobject = jsonarray.getJSONObject(i);
-
-                String classID = jsonobject.getString("class_id");
-                String dayTimes = jsonobject.getString("date_time");
-                String className = jsonobject.getString("class_name");
-                String location = jsonobject.getString("location");
-                String instructor = jsonobject.getString("instructor");
-                String enrolled = jsonobject.getString("enrolled");
-                String status = jsonobject.getString("status");
-
-                Course temp = new Course(classID, dayTimes, className, instructor, location, enrolled, status);
-
-                arrayList.add(temp);
-            }
-        }
-        catch(MalformedURLException e){
-            e.printStackTrace();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        catch(JSONException e){
-            e.printStackTrace();
-        }
 
         // Locate the ListView in list_view_item.xml
         list = (ListView) findViewById(R.id.listview);
         list.setVisibility(View.INVISIBLE);
 
         // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, arrayList);
+        adapter = new ListViewAdapter(this, allData);
 
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
@@ -94,7 +52,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Course c = arrayList.get(position);
+                Course c = allData.get(position);
 //                Toast.makeText(context, "Clicked " + c.getName(), Toast.LENGTH_SHORT).show();
                 // Create an Intent to reference our new activity, then call startActivity
                 // to transition into the new Activity.

@@ -155,9 +155,13 @@ public abstract class BasicActivity extends AppCompatActivity implements WeekVie
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
-
-        //Intent i -> detail view for class
-
+//
+//        Intent detailIntent = new Intent(BasicActivity.this, DetailActivity.class);
+//
+//        detailIntent.putExtra("class", event.getName());
+//
+//        detailIntent.putExtra("caller", "BasicActivity");
+//        startActivity(detailIntent);
 
 
     }
