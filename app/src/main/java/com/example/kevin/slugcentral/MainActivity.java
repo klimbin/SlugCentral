@@ -22,9 +22,8 @@ import java.util.StringTokenizer;
 //need android:theme="@style/AppTheme.NoActionBar" to get rid of label on one activity
 public class MainActivity extends AppCompatActivity {
 
-    Course[] courseNameList;
     public static ArrayList<Course> allData = new ArrayList<Course>();
-    String tURL = "https://e76561ae.ngrok.io/api/v1.0/courses/all/2000";
+    String tURL = "https://56ad94a8.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
             String jsonString = new Scanner(new URL(tURL).openStream(), "UTF-8").useDelimiter("\\A").next();
 
             JSONArray jsonarray = new JSONArray(jsonString);
-
-            Course[] tempArray = new Course[jsonarray.length()];
-
-            String finalThing;
 
             for (int i = 0; i < jsonarray.length(); i++) {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
