@@ -1,6 +1,8 @@
 package com.example.kevin.slugcentral;
 
+import android.content.Intent;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.alamkanak.weekview.WeekViewEvent;
 
@@ -190,5 +192,18 @@ public class ScheduleActivity extends BasicActivity {
         events.add(event);
 
         return events;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.add:
+                Intent i = new Intent(ScheduleActivity.this, SearchActivity.class);
+                startActivity(i);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

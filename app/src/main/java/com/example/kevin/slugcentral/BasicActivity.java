@@ -69,16 +69,15 @@ public abstract class BasicActivity extends AppCompatActivity implements WeekVie
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-//        setupDateTimeInterpreter(id == R.id.action_week_view);
-        switch (id){
-            case R.id.add:
-                Intent i = new Intent(BasicActivity.this, SearchActivity.class);
-                startActivity(i);
-                return true;
-        }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id){
+//            case R.id.add:
+//                Intent i = new Intent(BasicActivity.this, SearchActivity.class);
+//                startActivity(i);
+//                return true;
+//        }
 //            case R.id.action_day_view:
 //                if (mWeekViewType != TYPE_DAY_VIEW) {
 //                    item.setChecked(!item.isChecked());
@@ -116,9 +115,9 @@ public abstract class BasicActivity extends AppCompatActivity implements WeekVie
 //                }
 //                return true;
 //        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     /**
      * Set up a date time interpreter which will show short date values when in week view and long
