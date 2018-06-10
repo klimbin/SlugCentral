@@ -54,7 +54,7 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
+                    android:hint="@string/password"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -70,8 +70,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
+                android:text="@string/signIn"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/create_new"
+                style="@android:style/TextAppearance.Material.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/Reg" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/fb_login"
+                android:layout_width="223dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="30dp" />
+
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                android:id="@+id/twitter_login"
+                android:layout_width="223dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="15dp" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/G_login"
+                android:layout_width="223dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="15dp" />
 
         </LinearLayout>
     </ScrollView>

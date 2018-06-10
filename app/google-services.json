@@ -17,9 +17,17 @@
         {
           "client_id": "791658295665-kh2g473m0ta0c7huul0o8k95vgaf5up5.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "791658295665-kh2g473m0ta0c7huul0o8k95vgaf5up5.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
-      "api_key": [{ "current_key": "" }],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFIfwR9FRQYj2HzCqTUzBxv93DLeYmnr8"
+        }
+      ],
       "services": {
         "analytics_service": {
           "status": 1

@@ -14,7 +14,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
-
+    <!-- Strings for FB  -->
+    <string name="facebook_app_id">1718768328205149</string>
+    <string name="fb_login_protocol_scheme">fb1718768328205149</string>
+    <!-- Twitter consumer key and secret -->
+    <string name="twitter_consumer_key" translatable="false">nJX6YMiGD1z9HFvqapFjvNwEo</string>
+    <string name="twitter_consumer_secret" translatable="false">LrWnx4L53Uzymenn1ccpeKnOZz6UTZexJHlYB2AKRAfdWrGtpu
+</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
@@ -132,4 +138,8 @@
     <string name="remove">remove</string>
     <string name="class_status">Class Status:</string>
     <string name="seats">Seats:</string>
+    <string name="password">Password</string>
+    <string name="signIn">Sign In</string>
+    <string name="Reg">Create New Account</string>
+    <string name="display_name">Display Name</string>
 </resources>
