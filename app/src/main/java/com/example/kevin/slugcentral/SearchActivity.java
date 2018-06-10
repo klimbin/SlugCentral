@@ -154,8 +154,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Course class = arrayList.get(position);
-                Toast.makeText(context, "Clicked " + class.getName(), Toast.LENGTH_SHORT).show();
+//                Course class = arrayList.get(position);
+//                Toast.makeText(context, "Clicked " + class.getName(), Toast.LENGTH_SHORT).show();
 //                // Create an Intent to reference our new activity, then call startActivity
 //                // to transition into the new Activity.
 //                Intent detailIntent = new Intent(context, DetailView.class);
