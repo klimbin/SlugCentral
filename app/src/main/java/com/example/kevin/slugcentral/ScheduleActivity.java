@@ -66,7 +66,8 @@ public class ScheduleActivity extends BasicActivity {
                 startHour = Integer.parseInt(sStartTime.substring(0,2));
                 startMin = Integer.parseInt(sStartTime.substring(3,5));
 
-                if(sStartTime.substring(5,7).equals("PM"));
+                Log.d("Adding Class start time", sStartTime + " " + sEndTime);
+                if(sStartTime.substring(5,7).equals("PM"))
                 {
                     startHour += 12;
                 }
@@ -74,7 +75,7 @@ public class ScheduleActivity extends BasicActivity {
                 endHour = Integer.parseInt(sEndTime.substring(0,2));
                 endMin = Integer.parseInt(sEndTime.substring(3,5));
 
-                if(sEndTime.substring(5,7).equals("PM"));
+                if(sEndTime.substring(5,7).equals("PM"))
                 {
                     endHour += 12;
                 }
