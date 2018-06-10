@@ -29,7 +29,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     ListView list;
     ListViewAdapter adapter;
     SearchView editSearch;
-    Course[] courseNameList;
     ArrayList<Course> arrayList = new ArrayList<Course>();
     String tURL = "https://221c682f.ngrok.io/api/v1.0/courses/all/2000";
 
@@ -56,70 +55,18 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             for (int i = 0; i < jsonarray.length(); i++) {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
 
-                String date;
-                int startHour;
-                int startMin;
-                int endHour;
-                int endMin;
-                StringTokenizer dateTime = new StringTokenizer(jsonobject.getString("date_time")," ");
-                if(dateTime.countTokens() == 2)
-                {
-                    date = dateTime.nextToken();
-                    if(date.equals("Cancelled"))
-                    {
-                        date = "Cancelled";
-                        startHour = -1;
-                        startMin = -1;
-                        endHour = -1;
-                        endMin = -1;
-                    }
-                    else{
-                        String time = dateTime.nextToken();
-                        Log.d("Test", jsonobject.getString("class_id") + " " + time);
-                        StringTokenizer timeSplit = new StringTokenizer(time, "-");
-                        String sStartTime = timeSplit.nextToken();
-                        String sEndTime = timeSplit.nextToken();
-                        // 11:00AM-03:00PM
-                        startHour = Integer.parseInt(sStartTime.substring(0,2));
-                        startMin = Integer.parseInt(sStartTime.substring(3,5));
-
-                        if(sStartTime.substring(5,7).equals("PM"));
-                        {
-                            startHour += 12;
-                        }
-
-                        endHour = Integer.parseInt(sEndTime.substring(0,2));
-                        endMin = Integer.parseInt(sEndTime.substring(3,5));
-
-                        if(sEndTime.substring(5,7).equals("PM"));
-                        {
-                            endHour += 12;
-                        }
-
-                    }
-
-                }
-                else{
-                    date = "TBA";
-                    startHour = -1;
-                    startMin = -1;
-                    endHour = -1;
-                    endMin = -1;
-
-                }
                 String classID = jsonobject.getString("class_id");
+                String dayTimes = jsonobject.getString("date_time");
                 String className = jsonobject.getString("class_name");
                 String location = jsonobject.getString("location");
                 String instructor = jsonobject.getString("instructor");
                 String enrolled = jsonobject.getString("enrolled");
                 String status = jsonobject.getString("status");
 
-                Course temp = new Course(classID, startHour, startMin, endHour, endMin, className, instructor, location, date, enrolled, status );
+                Course temp = new Course(classID, dayTimes, className, instructor, location, enrolled, status);
 
-
-                tempArray[i] = temp;
+                arrayList.add(temp);
             }
-            courseNameList = tempArray;
         }
         catch(MalformedURLException e){
             e.printStackTrace();
@@ -131,16 +78,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             e.printStackTrace();
         }
 
-
         // Locate the ListView in list_view_item.xml
         list = (ListView) findViewById(R.id.listview);
         list.setVisibility(View.INVISIBLE);
-
-        for (int i = 0; i < courseNameList.length; i++) {
-            Course course = new Course(courseNameList[i].getName());
-            // Binds all strings into an array
-            arrayList.add(course);
-        }
 
         // Pass results to ListViewAdapter Class
         adapter = new ListViewAdapter(this, arrayList);
@@ -154,22 +94,25 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//                Course class = arrayList.get(position);
-//                Toast.makeText(context, "Clicked " + class.getName(), Toast.LENGTH_SHORT).show();
-//                // Create an Intent to reference our new activity, then call startActivity
-//                // to transition into the new Activity.
-//                Intent detailIntent = new Intent(context, DetailView.class);
-//
-//                // pass some key value pairs to the next Activity (via the Intent)
-//                detailIntent.putExtra("title", class.getName());
-//                detailIntent.putExtra("time", class.get);
-//                detailIntent.putExtra("date", selected.date);
-//                detailIntent.putExtra("location", selected.location);
-//                detailIntent.putExtra("description", selected.description);
-//
-//                detailIntent.putExtra("position", position);
-//
-//                startActivity(detailIntent);
+                Course c = arrayList.get(position);
+//                Toast.makeText(context, "Clicked " + c.getName(), Toast.LENGTH_SHORT).show();
+                // Create an Intent to reference our new activity, then call startActivity
+                // to transition into the new Activity.
+                Intent detailIntent = new Intent(context, DetailActivity.class);
+
+                // pass some key value pairs to the next Activity (via the Intent)
+                detailIntent.putExtra("name", c.getName());
+                detailIntent.putExtra("num", c.getId());
+                detailIntent.putExtra("instructor", c.getInstructor());
+                detailIntent.putExtra("location", c.getClassroom());
+                detailIntent.putExtra("daysAndTime", c.getDaysTimes());
+                detailIntent.putExtra("status", c.getStatus());
+                detailIntent.putExtra("seats", c.getEnrolled());
+
+                detailIntent.putExtra("position", position);
+
+                detailIntent.putExtra("caller", "SearchActivity");
+                startActivity(detailIntent);
             }
 
         });
