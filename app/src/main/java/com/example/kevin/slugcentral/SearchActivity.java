@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,7 +31,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     SearchView editSearch;
     Course[] courseNameList;
     ArrayList<Course> arrayList = new ArrayList<Course>();
-    String tURL = "https://01b94458.ngrok.io/api/v1.0/courses/all/2000";
+    String tURL = "https://221c682f.ngrok.io/api/v1.0/courses/all/2000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,28 +62,40 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 int endHour;
                 int endMin;
                 StringTokenizer dateTime = new StringTokenizer(jsonobject.getString("date_time")," ");
-                if(dateTime.countTokens() < 3)
+                if(dateTime.countTokens() == 2)
                 {
                     date = dateTime.nextToken();
-                    String time = dateTime.nextToken();
-                    StringTokenizer timeSplit = new StringTokenizer(time, "-");
-                    String sStartTime = timeSplit.nextToken();
-                    String sEndTime = timeSplit.nextToken();
-                    // 11:00AM-03:00PM
-                    startHour = Integer.parseInt(sStartTime.substring(0,2));
-                    startMin = Integer.parseInt(sStartTime.substring(3,5));
-
-                    if(sStartTime.substring(5,7).equals("PM"));
+                    if(date.equals("Cancelled"))
                     {
-                        startHour += 12;
+                        date = "Cancelled";
+                        startHour = -1;
+                        startMin = -1;
+                        endHour = -1;
+                        endMin = -1;
                     }
+                    else{
+                        String time = dateTime.nextToken();
+                        Log.d("Test", jsonobject.getString("class_id") + " " + time);
+                        StringTokenizer timeSplit = new StringTokenizer(time, "-");
+                        String sStartTime = timeSplit.nextToken();
+                        String sEndTime = timeSplit.nextToken();
+                        // 11:00AM-03:00PM
+                        startHour = Integer.parseInt(sStartTime.substring(0,2));
+                        startMin = Integer.parseInt(sStartTime.substring(3,5));
 
-                    endHour = Integer.parseInt(sEndTime.substring(0,2));
-                    endMin = Integer.parseInt(sEndTime.substring(3,5));
+                        if(sStartTime.substring(5,7).equals("PM"));
+                        {
+                            startHour += 12;
+                        }
 
-                    if(sEndTime.substring(5,7).equals("PM"));
-                    {
-                        endHour += 12;
+                        endHour = Integer.parseInt(sEndTime.substring(0,2));
+                        endMin = Integer.parseInt(sEndTime.substring(3,5));
+
+                        if(sEndTime.substring(5,7).equals("PM"));
+                        {
+                            endHour += 12;
+                        }
+
                     }
 
                 }
@@ -101,7 +114,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 String enrolled = jsonobject.getString("enrolled");
                 String status = jsonobject.getString("status");
 
-                Course temp = new Course(classID, startHour, startMin, endHour, endMin, className, instructor, location, date, enrolled, status);
+                Course temp = new Course(classID, startHour, startMin, endHour, endMin, className, instructor, location, date, enrolled, status );
 
 
                 tempArray[i] = temp;
@@ -141,14 +154,15 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(context, "Clicked " + arrayList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Course class = arrayList.get(position);
+                Toast.makeText(context, "Clicked " + class.getName(), Toast.LENGTH_SHORT).show();
 //                // Create an Intent to reference our new activity, then call startActivity
 //                // to transition into the new Activity.
 //                Intent detailIntent = new Intent(context, DetailView.class);
 //
 //                // pass some key value pairs to the next Activity (via the Intent)
-//                detailIntent.putExtra("title", selected.title);
-//                detailIntent.putExtra("time", selected.time);
+//                detailIntent.putExtra("title", class.getName());
+//                detailIntent.putExtra("time", class.get);
 //                detailIntent.putExtra("date", selected.date);
 //                detailIntent.putExtra("location", selected.location);
 //                detailIntent.putExtra("description", selected.description);
