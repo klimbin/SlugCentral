@@ -125,4 +125,11 @@
     <string name="thankFeedback">Thanks For The Feedback :)</string>
     <string name="send_feedback">Send Feedback</string>
     <string name="default_message">Hey There ;)</string>
+    <string name="instructor">Instructor:</string>
+    <string name="classroom">Classroom:</string>
+    <string name="class_number">Class Number:</string>
+    <string name="days_times"><![CDATA[Days & Times:]]></string>
+    <string name="remove">remove</string>
+    <string name="class_status">Class Status:</string>
+    <string name="seats">Seats:</string>
 </resources>
