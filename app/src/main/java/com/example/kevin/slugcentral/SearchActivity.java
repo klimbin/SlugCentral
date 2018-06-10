@@ -15,16 +15,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -32,15 +28,14 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     ListView list;
     ListViewAdapter adapter;
     SearchView editSearch;
-    ClassInfo[] courseNameList;
+    Course[] courseNameList;
     ArrayList<Course> arrayList = new ArrayList<Course>();
-    //This changes each time the server is put up since we are using the free version which gives
-    //us a new url each time.
     String tURL = "https://01b94458.ngrok.io/api/v1.0/courses/all/2000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
         setContentView(R.layout.activity_search);
         //https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -49,29 +44,67 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         //https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
 
-
         try {
             //https://stackoverflow.com/questions/4328711/read-url-to-string-in-few-lines-of-java-code?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
             String jsonString = new Scanner(new URL(tURL).openStream(), "UTF-8").useDelimiter("\\A").next();
 
             JSONArray jsonarray = new JSONArray(jsonString);
 
-            ClassInfo[] tempArray = new ClassInfo[jsonarray.length()];
+            Course[] tempArray = new Course[jsonarray.length()];
 
             for (int i = 0; i < jsonarray.length(); i++) {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
-                ClassInfo temp = new ClassInfo();
-                temp.class_id = jsonobject.getString("class_id");
-                temp.class_name = jsonobject.getString("class_name");
-                temp.date_time = jsonobject.getString("date_time");
-                temp.descriptive_link = jsonobject.getString("descriptive_link");
-                temp.enrolled = jsonobject.getString("enrolled");
-                temp.instructor = jsonobject.getString("instructor");
-                temp.link_sources = jsonobject.getString("link_sources");
-                temp.location = jsonobject.getString("location");
-                temp.status = jsonobject.getString("status");
-                tempArray[i] = temp;
 
+                String date;
+                int startHour;
+                int startMin;
+                int endHour;
+                int endMin;
+                StringTokenizer dateTime = new StringTokenizer(jsonobject.getString("date_time")," ");
+                if(dateTime.countTokens() < 3)
+                {
+                    date = dateTime.nextToken();
+                    String time = dateTime.nextToken();
+                    StringTokenizer timeSplit = new StringTokenizer(time, "-");
+                    String sStartTime = timeSplit.nextToken();
+                    String sEndTime = timeSplit.nextToken();
+                    // 11:00AM-03:00PM
+                    startHour = Integer.parseInt(sStartTime.substring(0,2));
+                    startMin = Integer.parseInt(sStartTime.substring(3,5));
+
+                    if(sStartTime.substring(5,7).equals("PM"));
+                    {
+                        startHour += 12;
+                    }
+
+                    endHour = Integer.parseInt(sEndTime.substring(0,2));
+                    endMin = Integer.parseInt(sEndTime.substring(3,5));
+
+                    if(sEndTime.substring(5,7).equals("PM"));
+                    {
+                        endHour += 12;
+                    }
+
+                }
+                else{
+                    date = "TBA";
+                    startHour = -1;
+                    startMin = -1;
+                    endHour = -1;
+                    endMin = -1;
+
+                }
+                String classID = jsonobject.getString("class_id");
+                String className = jsonobject.getString("class_name");
+                String location = jsonobject.getString("location");
+                String instructor = jsonobject.getString("instructor");
+                String enrolled = jsonobject.getString("enrolled");
+                String status = jsonobject.getString("status");
+
+                Course temp = new Course(classID, startHour, startMin, endHour, endMin, className, instructor, location, date, enrolled, status);
+
+
+                tempArray[i] = temp;
             }
             courseNameList = tempArray;
         }
@@ -86,19 +119,12 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
 
 
-
-
-
-
-
-
-
         // Locate the ListView in list_view_item.xml
         list = (ListView) findViewById(R.id.listview);
         list.setVisibility(View.INVISIBLE);
 
         for (int i = 0; i < courseNameList.length; i++) {
-            Course course = new Course(courseNameList[i].class_name);
+            Course course = new Course(courseNameList[i].getName());
             // Binds all strings into an array
             arrayList.add(course);
         }
