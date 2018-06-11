@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -20,7 +21,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.Gravity;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Locale;
 import java.util.List;
 
@@ -34,9 +38,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
+
+    public JSONObject jo = null;
+    public JSONArray ja = null;
 
     private GoogleMap mMap;
     public static List<WeekViewEvent> events = ScheduleActivity.events;
@@ -80,35 +92,102 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         List<Address> addresses = null;
 
-//TODO: get arraylist of users courses for the current term
+        // Read the file
 
-        for(int j = events.size() - 1; j > 0; j--)
-        {
-
-//        for(int i = 0; i < arrayList.size(); i++) {
+        try {
+            File f = new File(getFilesDir(), "file.ser");
+            FileInputStream fi = new FileInputStream(f);
+            ObjectInputStream o = new ObjectInputStream(fi);
+            // Notice here that we are de-serializing a String object (instead of
+            // a JSONObject object) and passing the String to the JSONObject's
+            // constructor. That's because String is serializable and
+            // JSONObject is not. To convert a JSONObject back to a String, simply
+            // call the JSONObject's toString method.
+            String j = null;
             try {
-//                addresses = geocoder.getFromLocationName(Course.getClassroom(), 1);
-                addresses = geocoder.getFromLocationName(events.get(j).getLocation(), 1);
+                j = (String) o.readObject();
             }
-            catch(IOException e) {
+            catch (ClassNotFoundException c) {
+                c.printStackTrace();
+            }
+            try {
+                jo = new JSONObject(j);
+                ja = jo.getJSONArray("data");
+            }
+            catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            if (addresses != null && addresses.size() > 0) {
-                double latitude = addresses.get(0).getLatitude();
-                double longitude = addresses.get(0).getLongitude();
-                Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
-                LatLng classPos = new LatLng(latitude, longitude);
-//                Marker marker = mMap.addMarker(new MarkerOptions()
-//                                        .position(classPos)
-//                                        .title(Course.getName())
-//                                        .snippet(Course.getClassroom() + "\n" + Course.getMeetingDays()) + " " +
-//                                                Course.getStartTime() + " - " + Course.getEndTime());
-                Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(classPos)
-                        .title(events.get(j).getName()).snippet(events.get(j).getLocation()));
+        }
+        catch (IOException e) {
+            // Here, initialize a new JSONObject
+            jo = new JSONObject();
+            ja = new JSONArray();
+            try {
+                jo.put("data", ja);
+            }
+            catch (JSONException j) {
+                j.printStackTrace();
             }
         }
+
+        try {
+            for(int i = 0; i < ja.length(); i++){
+                JSONObject temp = ja.getJSONObject(i);
+                String location = temp.getString("location");
+                StringTokenizer st = new StringTokenizer(location,":");
+                st.nextToken();
+                location = st.nextToken();
+                try {
+                    Log.d("classroom name: ", location);
+                    addresses = geocoder.getFromLocationName(location, 1);
+                }
+                catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (addresses != null && addresses.size() > 0) {
+                    double latitude = addresses.get(0).getLatitude();
+                    double longitude = addresses.get(0).getLongitude();
+                    Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
+                    LatLng classPos = new LatLng(latitude, longitude);
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                            .position(classPos)
+                            .title(temp.getString("name")).snippet(location));
+                }
+            }
+
+        }
+        catch(JSONException e) {
+            e.printStackTrace();
+        }
+
+//        for(int j = events.size() - 1; j > 0; j--)
+//        {
+//
+////        for(int i = 0; i < arrayList.size(); i++) {
+//            try {
+////                addresses = geocoder.getFromLocationName(Course.getClassroom(), 1);
+//                addresses = geocoder.getFromLocationName(events.get(j).getLocation(), 1);
+//            }
+//            catch(IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            if (addresses != null && addresses.size() > 0) {
+//                double latitude = addresses.get(0).getLatitude();
+//                double longitude = addresses.get(0).getLongitude();
+//                Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
+//                LatLng classPos = new LatLng(latitude, longitude);
+////                Marker marker = mMap.addMarker(new MarkerOptions()
+////                                        .position(classPos)
+////                                        .title(Course.getName())
+////                                        .snippet(Course.getClassroom() + "\n" + Course.getMeetingDays()) + " " +
+////                                                Course.getStartTime() + " - " + Course.getEndTime());
+//                Marker marker = mMap.addMarker(new MarkerOptions()
+//                        .position(classPos)
+//                        .title(events.get(j).getName()).snippet(events.get(j).getLocation()));
+//            }
+//        }
 
 //        try {
 //            addresses = geocoder.getFromLocationName("Humn Lecture Hall", 1);

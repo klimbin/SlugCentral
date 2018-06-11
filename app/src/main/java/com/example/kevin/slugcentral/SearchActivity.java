@@ -76,7 +76,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
                 detailIntent.putExtra("position", position);
 
-                detailIntent.putExtra("caller", "SearchActivity");
+                detailIntent.putExtra("caller", "Search");
                 startActivity(detailIntent);
             }
 

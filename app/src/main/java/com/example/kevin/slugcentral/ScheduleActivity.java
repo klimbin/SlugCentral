@@ -2,12 +2,22 @@ package com.example.kevin.slugcentral;
 
 import android.content.Intent;
 import android.graphics.RectF;
+import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekViewEvent;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -15,50 +25,203 @@ import java.util.StringTokenizer;
 
 public class ScheduleActivity extends BasicActivity {
 
-    //TODO: serialize user data
-    //TODO: make detailview display course info when going from scheduleactivity to detail
+    public JSONObject jo = null;
+    public JSONArray ja = null;
 
     // Populate the week view with some events.
     public static List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
 
-
-        // api sets up 3 months but we only want one month
+        // api sets up 3 months but we only want one month to avoid 3 duplicate events
         if(newMonth != 6)
             return (new ArrayList<WeekViewEvent>());
 
-        Intent i = getIntent();
-        int position = i.getIntExtra("position", -1);
-        if (position != -1) {
-            if (i.getStringExtra("Action").equals("Add")) {
-                Log.d("Adding Class w pos:", String.valueOf(position));
-                events = addClass(position, events);
+        // Read the file
+
+        try {
+            File f = new File(getFilesDir(), "file.ser");
+            FileInputStream fi = new FileInputStream(f);
+            ObjectInputStream o = new ObjectInputStream(fi);
+            // Notice here that we are de-serializing a String object (instead of
+            // a JSONObject object) and passing the String to the JSONObject's
+            // constructor. That's because String is serializable and
+            // JSONObject is not. To convert a JSONObject back to a String, simply
+            // call the JSONObject's toString method.
+            String j = null;
+            try {
+                j = (String) o.readObject();
+            }
+            catch (ClassNotFoundException c) {
+                c.printStackTrace();
+            }
+            try {
+                jo = new JSONObject(j);
+                ja = jo.getJSONArray("data");
+                // make all the week view events for each class
+                for (int i = 0; i < ja.length(); i++) {
+                    JSONObject temp = ja.getJSONObject(i);
+                    if(!inSchedule(events, temp))
+                        events = addClass(temp, events);
+                }
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
             }
         }
-        else
+        catch (IOException e) {
+            // Here, initialize a new JSONObject
+            jo = new JSONObject();
+            ja = new JSONArray();
+            try {
+                jo.put("data", ja);
+            }
+            catch (JSONException j) {
+                j.printStackTrace();
+            }
+        }
+
+//        Intent i = getIntent();
+//        int position = i.getIntExtra("position", -1);
+//        if (position != -1) {
+//            if (i.getStringExtra("Action").equals("Add")) {
+//                Log.d("Adding Class w pos:", String.valueOf(position));
+//                events = addClass(position, events);
+//            }
+//        }
+//        else
+//        {
+//            String tname = i.getStringExtra("Name");
+//
+//            for(int j = events.size() - 1; j > 0; j--)
+//            {
+//                if(events.get(j).getName().equals(tname))
+//                {
+//                    events.remove(j);
+//
+//                }
+//            }
+//            if(events.size() == 1)
+//            {
+//                if(events.get(0).getName().equals(tname))
+//                {
+//                    events.remove(0);
+//
+//                }
+//            }
+//        }
+
+        return events;
+    }
+
+    public List<WeekViewEvent> addClass(JSONObject j, List<WeekViewEvent> events) {
+
+        String eventTitle, id, location, daysTimes;
+        eventTitle = id = location = daysTimes = "N/A";
+        try {
+            eventTitle = j.getString("name");
+            id = j.getString("num");
+            location = j.getString("location");
+            daysTimes = j.getString("daysAndTime");
+        }
+        catch(JSONException e) {
+            e.printStackTrace();
+        }
+        StringTokenizer st = new StringTokenizer(location,":");
+        st.nextToken();
+        location = st.nextToken();
+        String date;
+        int startHour;
+        int startMin;
+        int endHour;
+        int endMin;
+        StringTokenizer dateTime = new StringTokenizer(daysTimes," ");
+        if(dateTime.countTokens() == 2)
         {
-            String tname = i.getStringExtra("Name");
-
-            for(int j = events.size() - 1; j > 0; j--)
+            date = dateTime.nextToken();
+            if(date.equals("Cancelled"))
             {
-                if(events.get(j).getName().equals(tname))
-                {
-                    events.remove(j);
-
-                }
+                date = "Cancelled";
+                startHour = -1;
+                startMin = -1;
+                endHour = -1;
+                endMin = -1;
             }
-            if(events.size() == 1)
-            {
-                if(events.get(0).getName().equals(tname))
-                {
-                    events.remove(0);
+            else{
+                String time = dateTime.nextToken();
+                StringTokenizer timeSplit = new StringTokenizer(time, "-");
+                String sStartTime = timeSplit.nextToken();
+                String sEndTime = timeSplit.nextToken();
+                startHour = Integer.parseInt(sStartTime.substring(0,2));
+                startMin = Integer.parseInt(sStartTime.substring(3,5));
 
+                Log.d("Adding Class start time", sStartTime + " " + sEndTime);
+                if(sStartTime.substring(5,7).equals("PM") && startHour < 12)
+                {
+                    startHour += 12;
                 }
+
+                endHour = Integer.parseInt(sEndTime.substring(0,2));
+                endMin = Integer.parseInt(sEndTime.substring(3,5));
+
+                if(sEndTime.substring(5,7).equals("PM") && endHour < 12)
+                {
+                    endHour += 12;
+                }
+
             }
+
+        }
+        else{
+            date = "TBA";
+            startHour = -1;
+            startMin = -1;
+            endHour = -1;
+            endMin = -1;
+
+        }
+
+        Log.d("Adding Class: ", eventTitle + " " + id + " " + daysTimes);
+//        for(int i = 0; i < events.size(); i ++)
+//        {
+//            if(events.get(i).getId() == Long.valueOf(id))
+//            {
+//                Toast.makeText(ScheduleActivity.this, "This class has already been added",
+//                        Toast.LENGTH_LONG).show();
+//                return events;
+//            }
+//        }
+        switch(date) {
+            case "M":
+                events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 4));
+                break;
+            case "Tu":
+                events.add(makeEvent(10, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
+                break;
+            case "TuTh":
+            case"TuThSa":
+                events.add(makeEvent(10, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
+                events.add(makeEvent(12, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
+                break;
+            case "W":
+                events.add(makeEvent(11, id, eventTitle, location, startHour, startMin, endHour, endMin, 1));
+                break;
+            case "MW":
+                events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 2));
+                events.add(makeEvent(11, id, eventTitle, location, startHour, startMin, endHour, endMin, 2));
+                break;
+            case "MWF":
+                events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 3));
+                events.add(makeEvent(11, id, eventTitle, location, startHour, startMin, endHour, endMin, 3));
+                events.add(makeEvent(13, id, eventTitle, location, startHour, startMin, endHour, endMin, 3));
+                break;
+            default:
+                break;
         }
 
         return events;
+
     }
 
     public List<WeekViewEvent> addClass(int position, List<WeekViewEvent> events) {
@@ -123,7 +286,6 @@ public class ScheduleActivity extends BasicActivity {
         }
 
         Log.d("Adding Class: ", SearchActivity.courses.get(position).getName() + " " + SearchActivity.courses.get(position).getDaysTimes());
-        Log.d("Adding Class: data parsed is ", id + " " + eventTitle + " " + startHour + ":" + startMin + " - " + endHour + ":" + endMin);
         for(int i = 0; i < events.size(); i ++)
         {
             if(events.get(i).getId() == Long.valueOf(id))
@@ -171,6 +333,19 @@ public class ScheduleActivity extends BasicActivity {
                 events.remove(i);
         }
         return events;
+    }
+
+    public boolean inSchedule(List<WeekViewEvent> events, JSONObject j){
+        for (int i = 0; i < events.size(); i++) {
+            try {
+                if (events.get(i).getName().equals(j.getString("name")))
+                    return true;
+            }
+            catch(JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     public WeekViewEvent makeEvent(int date, String id, String eventTitle, String location, int startHour, int startMin, int endHour, int endMin, int c) {
@@ -282,6 +457,7 @@ public class ScheduleActivity extends BasicActivity {
 
         Intent detailIntent = new Intent(ScheduleActivity.this, DetailActivity.class);
 
+        Log.d("remove?: ", event.getName());
         detailIntent.putExtra("name", event.getName());
         detailIntent.putExtra("caller", "Schedule");
         startActivity(detailIntent);
