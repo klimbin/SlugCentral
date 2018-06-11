@@ -41,6 +41,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         list = (ListView) findViewById(R.id.listview);
         list.setVisibility(View.INVISIBLE);
 
+        courses.clear();
+
         for(int i = 0; i < allData.size(); i++) {
             courses.add(allData.get(i));
         }
