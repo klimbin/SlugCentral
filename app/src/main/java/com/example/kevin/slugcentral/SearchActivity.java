@@ -29,7 +29,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     ListView list;
     ListViewAdapter adapter;
     SearchView editSearch;
-    public static ArrayList<Course> allData = MainActivity.allData;
+    ArrayList<Course> allData = MainActivity.allData;
+    public static ArrayList<Course> courses = new ArrayList<Course>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,12 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         list = (ListView) findViewById(R.id.listview);
         list.setVisibility(View.INVISIBLE);
 
+        for(int i = 0; i < allData.size(); i++) {
+            courses.add(allData.get(i));
+        }
+
         // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, allData);
+        adapter = new ListViewAdapter(this, courses);
 
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
@@ -52,7 +57,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Course c = allData.get(position);
+                Course c = courses.get(position);
 //                Toast.makeText(context, "Clicked " + c.getName(), Toast.LENGTH_SHORT).show();
                 // Create an Intent to reference our new activity, then call startActivity
                 // to transition into the new Activity.

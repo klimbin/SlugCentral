@@ -39,14 +39,14 @@ public class ScheduleActivity extends BasicActivity {
         //course times are specified in this format 00:00
         //course meetingDays (e.g. Monday, Wednesday, Friday)
 
-        String eventTitle = SearchActivity.allData.get(position).getName();
-        String id = SearchActivity.allData.get(position).getId();
+        String eventTitle = SearchActivity.courses.get(position).getName();
+        String id = SearchActivity.courses.get(position).getId();
         String date;
         int startHour;
         int startMin;
         int endHour;
         int endMin;
-        StringTokenizer dateTime = new StringTokenizer(SearchActivity.allData.get(position).getDaysTimes()," ");
+        StringTokenizer dateTime = new StringTokenizer(SearchActivity.courses.get(position).getDaysTimes()," ");
         if(dateTime.countTokens() == 2)
         {
             date = dateTime.nextToken();
@@ -92,7 +92,7 @@ public class ScheduleActivity extends BasicActivity {
 
         }
 
-        Log.d("Adding Class: ", SearchActivity.allData.get(position).getName() + " " + SearchActivity.allData.get(position).getDaysTimes());
+        Log.d("Adding Class: ", SearchActivity.courses.get(position).getName() + " " + SearchActivity.courses.get(position).getDaysTimes());
         Log.d("Adding Class: data parsed is ", id + " " + eventTitle + " " + startHour + ":" + startMin + " - " + endHour + ":" + endMin);
         switch(date) {
             case "TuTh":
@@ -120,7 +120,7 @@ public class ScheduleActivity extends BasicActivity {
     }
 
     public List<WeekViewEvent> removeClass(int position, List<WeekViewEvent> events) {
-        String id = SearchActivity.allData.get(position).getId();
+        String id = SearchActivity.courses.get(position).getId();
         for(int i = 0; i < events.size(); i++) {
             if (events.get(i).getId() == Long.valueOf(id))
                 events.remove(i);
