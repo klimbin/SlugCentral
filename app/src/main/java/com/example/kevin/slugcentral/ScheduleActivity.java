@@ -134,6 +134,9 @@ public class ScheduleActivity extends BasicActivity {
             }
         }
         switch(date) {
+            case "M":
+                events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 4));
+                break;
             case "Tu":
                 events.add(makeEvent(10, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
                 break;
@@ -179,7 +182,7 @@ public class ScheduleActivity extends BasicActivity {
         endTime.set(Calendar.HOUR_OF_DAY, endHour);
         endTime.set(Calendar.MINUTE, endMin);
 
-        int[] colors = new int[]{R.color.event_color_01, R.color.event_color_02, R.color.event_color_03, R.color.event_color_04};
+        int[] colors = new int[]{R.color.event_color_01, R.color.event_color_02, R.color.event_color_03, R.color.event_color_04, R.color.colorAccent};
 
         WeekViewEvent event = new WeekViewEvent(Long.valueOf(id), eventTitle, location, startTime, endTime);
         event.setColor(getResources().getColor(colors[c]));
