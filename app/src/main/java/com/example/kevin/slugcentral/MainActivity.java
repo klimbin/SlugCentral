@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgress;
     public static ArrayList<Course> allData = new ArrayList<Course>();
     private Handler mHandler;
-    String tURL = "https://4a88fd06.ngrok.io/api/v1.0/courses/all/2000";
+    String tURL = "https://782b6c51.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 String classID = jsonobject.getString("class_id");
                 String dayTimes = jsonobject.getString("date_time");
                 String className = jsonobject.getString("class_name");
-
-                StringTokenizer st = new StringTokenizer(jsonobject.getString("location"),":");
-                st.nextToken();
-                String location = st.nextToken();
+                String location = jsonobject.getString("location");
                 String instructor = jsonobject.getString("instructor");
                 String enrolled = jsonobject.getString("enrolled");
                 String status = jsonobject.getString("status");

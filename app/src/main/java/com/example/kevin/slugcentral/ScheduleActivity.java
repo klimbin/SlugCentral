@@ -65,6 +65,9 @@ public class ScheduleActivity extends BasicActivity {
         String eventTitle = SearchActivity.courses.get(position).getName();
         String id = SearchActivity.courses.get(position).getId();
         String location = SearchActivity.courses.get(position).getClassroom();
+        StringTokenizer st = new StringTokenizer(location,":");
+        st.nextToken();
+        location = st.nextToken();
         String date;
         int startHour;
         int startMin;
