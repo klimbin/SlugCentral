@@ -94,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 e.printStackTrace();
             }
 
-            if (addresses.size() > 0) {
+            if (addresses != null) {
                 double latitude = addresses.get(0).getLatitude();
                 double longitude = addresses.get(0).getLongitude();
                 Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
