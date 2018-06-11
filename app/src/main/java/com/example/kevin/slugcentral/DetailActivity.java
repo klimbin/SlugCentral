@@ -63,11 +63,6 @@ public class DetailActivity extends AppCompatActivity {
             remove.setEnabled(false);
             remove.setVisibility(View.INVISIBLE);
         }
-        // TODO: if user already added this class to planner disable add button
-//        else if(blah blah) {
-//            add.setText("Cannot add class twice");
-//            add.setEnabled(false);
-//        }
         else {
             add.setEnabled(false);
             add.setVisibility(View.INVISIBLE);

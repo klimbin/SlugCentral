@@ -97,6 +97,8 @@ public class Directory extends AppCompatActivity
                 startActivity(i);
             }
         });
+
+        //TODO: have drop down menu so user can choose academic term
         buttonMap.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //pop the activity off the stack

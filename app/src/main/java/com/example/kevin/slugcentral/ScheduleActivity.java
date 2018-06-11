@@ -15,6 +15,8 @@ import java.util.StringTokenizer;
 
 public class ScheduleActivity extends BasicActivity {
 
+    //TODO: serialize user data
+
     // Populate the week view with some events.
     public static List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
     @Override
