@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import com.alamkanak.weekview.WeekViewEvent;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -185,6 +187,13 @@ public class DetailActivity extends AppCompatActivity {
                 try {
                     for (int i = 0; i < ja.length(); i++) {
                         if (ja.getJSONObject(i).getString("name").equals(name)) {
+                            List<WeekViewEvent> events = ScheduleActivity.events;
+                            for(int j = 0; j < events.size(); j++) {
+                                if (events.get(j).getName().equals(ja.getJSONObject(i).getString("name"))) {
+                                    events.remove(j);
+                                    j--;
+                                }
+                            }
                             ja.remove(i);
                             break;
                         }
