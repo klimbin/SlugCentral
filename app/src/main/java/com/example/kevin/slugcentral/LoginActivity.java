@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))
-                .twitterAuthConfig(new TwitterAuthConfig(getResources().getString(R.string.twitter_consumer_key), getResources().getString(R.string.twitter_consumer_secret)))
+                .twitterAuthConfig(new TwitterAuthConfig(getResources().getString(R.string.tw_key), getResources().getString(R.string.tw_secret)))
                 .debug(true)
                 .build();
         Twitter.initialize(config);
