@@ -142,6 +142,7 @@ public class DetailActivity extends AppCompatActivity {
                             Intent i = new Intent(DetailActivity.this, ScheduleActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(i);
+                            return;
 
                         }
                     }
