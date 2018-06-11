@@ -223,6 +223,10 @@ public class ScheduleActivity extends BasicActivity {
                 Intent i = new Intent(ScheduleActivity.this, SearchActivity.class);
                 startActivity(i);
                 return true;
+            case R.id.map:
+                Intent j = new Intent(ScheduleActivity.this, MapsActivity.class);
+                startActivity(j);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
