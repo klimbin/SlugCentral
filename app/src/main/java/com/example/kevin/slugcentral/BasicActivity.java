@@ -152,19 +152,7 @@ public abstract class BasicActivity extends AppCompatActivity implements WeekVie
         //return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
     }
 
-    @Override
-    public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
-//
-//        Intent detailIntent = new Intent(BasicActivity.this, DetailActivity.class);
-//
-//        detailIntent.putExtra("class", event.getName());
-//
-//        detailIntent.putExtra("caller", "BasicActivity");
-//        startActivity(detailIntent);
 
-
-    }
 
     @Override
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {

@@ -45,6 +45,14 @@ public class ScheduleActivity extends BasicActivity {
 
                 }
             }
+            if(events.size() == 1)
+            {
+                if(events.get(0).getName().equals(tname))
+                {
+                    events.remove(0);
+
+                }
+            }
         }
 
         return events;
@@ -265,7 +273,6 @@ public class ScheduleActivity extends BasicActivity {
         Intent detailIntent = new Intent(ScheduleActivity.this, DetailActivity.class);
 
         detailIntent.putExtra("name", event.getName());
-
         detailIntent.putExtra("caller", "Schedule");
         startActivity(detailIntent);
 
