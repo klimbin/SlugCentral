@@ -9,6 +9,8 @@
     android:id="@+id/relativeLayout">
 
     <ProgressBar
+        android:progressBackgroundTint="#303F9F"
+        android:progressTint="#8f000000"
         android:id="@+id/splash_screen_progress_bar"
         style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
         android:layout_width="168dp"
