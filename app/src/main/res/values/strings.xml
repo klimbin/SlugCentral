@@ -135,5 +135,5 @@
     <string name="signIn">Sign In</string>
     <string name="Reg">Create New Account</string>
     <string name="display_name">Display Name</string>
-    <string name="loading">Starting Up</string>
+    <string name="loading">Loading...</string>
 </resources>
