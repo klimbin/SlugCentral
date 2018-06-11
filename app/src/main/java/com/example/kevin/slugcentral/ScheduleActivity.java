@@ -13,14 +13,15 @@ import java.util.StringTokenizer;
 
 public class ScheduleActivity extends BasicActivity {
 
+    // Populate the week view with some events.
+    public static List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-        // Populate the week view with some events.
-        List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+
 
         // api sets up 3 months but we only want one month
         if(newMonth != 6)
-            return events;
+            return (new ArrayList<WeekViewEvent>());
 
         Intent i = getIntent();
         int position = i.getIntExtra("position", -1);
