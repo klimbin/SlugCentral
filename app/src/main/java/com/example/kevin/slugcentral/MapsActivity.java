@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.List;
 
+import com.alamkanak.weekview.WeekViewEvent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private GoogleMap mMap;
+    public static List<WeekViewEvent> events = ScheduleActivity.events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,26 +82,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 //TODO: get arraylist of users courses for the current term
 
+        for(int j = events.size() - 1; j > 0; j--)
+        {
+
 //        for(int i = 0; i < arrayList.size(); i++) {
-//            try {
-//                geocoder.getFromLocationName(Course.getClassroom(), 1);
-//            }
-//            catch(IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if (addresses.size() > 0) {
-//                double latitude = addresses.get(0).getLatitude();
-//                double longitude = addresses.get(0).getLongitude();
-//                Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
-//                LatLng classPos = new LatLng(latitude, longitude);
+            try {
+//                addresses = geocoder.getFromLocationName(Course.getClassroom(), 1);
+                addresses = geocoder.getFromLocationName(events.get(j).getLocation(), 1);
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+
+            if (addresses.size() > 0) {
+                double latitude = addresses.get(0).getLatitude();
+                double longitude = addresses.get(0).getLongitude();
+                Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
+                LatLng classPos = new LatLng(latitude, longitude);
 //                Marker marker = mMap.addMarker(new MarkerOptions()
 //                                        .position(classPos)
 //                                        .title(Course.getName())
 //                                        .snippet(Course.getClassroom() + "\n" + Course.getMeetingDays()) + " " +
 //                                                Course.getStartTime() + " - " + Course.getEndTime());
-//            }
-//        }
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(classPos)
+                        .title(events.get(j).getName()).snippet(events.get(j).getLocation()));
+            }
+        }
 
 //        try {
 //            addresses = geocoder.getFromLocationName("Humn Lecture Hall", 1);

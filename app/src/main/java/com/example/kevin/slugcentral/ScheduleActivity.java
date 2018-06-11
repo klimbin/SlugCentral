@@ -64,6 +64,7 @@ public class ScheduleActivity extends BasicActivity {
 
         String eventTitle = SearchActivity.courses.get(position).getName();
         String id = SearchActivity.courses.get(position).getId();
+        String location = SearchActivity.courses.get(position).getClassroom();
         String date;
         int startHour;
         int startMin;
@@ -119,33 +120,33 @@ public class ScheduleActivity extends BasicActivity {
         Log.d("Adding Class: data parsed is ", id + " " + eventTitle + " " + startHour + ":" + startMin + " - " + endHour + ":" + endMin);
         for(int i = 0; i < events.size(); i ++)
         {
-            if(events.get(i).getName().equals(eventTitle))
+            if(events.get(i).getId() == Long.valueOf(id))
             {
-                Toast.makeText(ScheduleActivity.this, "This class already added",
+                Toast.makeText(ScheduleActivity.this, "This class has already been added",
                         Toast.LENGTH_LONG).show();
                 return events;
             }
         }
         switch(date) {
             case "Tu":
-                events.add(makeEvent(10, id, eventTitle, startHour, startMin, endHour, endMin, 0));
+                events.add(makeEvent(10, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
                 break;
             case "TuTh":
             case"TuThSa":
-                events.add(makeEvent(10, id, eventTitle, startHour, startMin, endHour, endMin, 0));
-                events.add(makeEvent(12, id, eventTitle, startHour, startMin, endHour, endMin, 0));
+                events.add(makeEvent(10, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
+                events.add(makeEvent(12, id, eventTitle, location, startHour, startMin, endHour, endMin, 0));
                 break;
             case "W":
-                events.add(makeEvent(11, id, eventTitle, startHour, startMin, endHour, endMin, 1));
+                events.add(makeEvent(11, id, eventTitle, location, startHour, startMin, endHour, endMin, 1));
                 break;
             case "MW":
-                events.add(makeEvent(9, id, eventTitle, startHour, startMin, endHour, endMin, 2));
-                events.add(makeEvent(11, id, eventTitle, startHour, startMin, endHour, endMin, 2));
+                events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 2));
+                events.add(makeEvent(11, id, eventTitle, location, startHour, startMin, endHour, endMin, 2));
                 break;
             case "MWF":
-                events.add(makeEvent(9, id, eventTitle, startHour, startMin, endHour, endMin, 3));
-                events.add(makeEvent(11, id, eventTitle, startHour, startMin, endHour, endMin, 3));
-                events.add(makeEvent(13, id, eventTitle, startHour, startMin, endHour, endMin, 3));
+                events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 3));
+                events.add(makeEvent(11, id, eventTitle, location, startHour, startMin, endHour, endMin, 3));
+                events.add(makeEvent(13, id, eventTitle, location, startHour, startMin, endHour, endMin, 3));
                 break;
             default:
                 break;
@@ -163,7 +164,7 @@ public class ScheduleActivity extends BasicActivity {
         return events;
     }
 
-    public WeekViewEvent makeEvent(int date, String id, String eventTitle, int startHour, int startMin, int endHour, int endMin, int c) {
+    public WeekViewEvent makeEvent(int date, String id, String eventTitle, String location, int startHour, int startMin, int endHour, int endMin, int c) {
         Calendar startTime = Calendar.getInstance();
         startTime.set(2018, 6, date);
         startTime.set(Calendar.HOUR_OF_DAY, startHour);
@@ -174,7 +175,7 @@ public class ScheduleActivity extends BasicActivity {
 
         int[] colors = new int[]{R.color.event_color_01, R.color.event_color_02, R.color.event_color_03, R.color.event_color_04};
 
-        WeekViewEvent event = new WeekViewEvent(Long.valueOf(id), eventTitle, startTime, endTime);
+        WeekViewEvent event = new WeekViewEvent(Long.valueOf(id), eventTitle, location, startTime, endTime);
         event.setColor(getResources().getColor(colors[c]));
         Log.d("PLZ PRINT", startTime.toString() + " " + endTime.toString());
         return event;
@@ -268,7 +269,7 @@ public class ScheduleActivity extends BasicActivity {
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
 
         Intent detailIntent = new Intent(ScheduleActivity.this, DetailActivity.class);
 
@@ -277,5 +278,11 @@ public class ScheduleActivity extends BasicActivity {
         startActivity(detailIntent);
 
 
+    }
+
+
+    @Override
+    public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
+//        onEventClick(event, eventRect);
     }
 }
