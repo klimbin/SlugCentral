@@ -2,6 +2,7 @@ package com.example.kevin.slugcentral;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,12 +24,24 @@ import java.util.StringTokenizer;
 public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgress;
     public static ArrayList<Course> allData = new ArrayList<Course>();
+    private Handler mHandler;
     String tURL = "https://0c333020.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+    public void onResume(){
+        super.onResume();
+        final Context context = this;
         mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
+        mHandler = new Handler();
+        final int progress =(int )(Math.random() * 100 + 1);
+        mHandler.postDelayed(new Runnable() {
+            public void run() {
+                mProgress.setProgress(progress);
+            }
+        }, 1000);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);
@@ -66,21 +79,19 @@ public class MainActivity extends AppCompatActivity {
         catch(JSONException e){
             e.printStackTrace();
         }
-    }
-    public void onResume(){
-        super.onResume();
-        final Context context = this;
-        new CountDownTimer(1000, 10000){
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mProgress.setProgress((int )(Math.random() * 50 + 1));
+
+        mHandler.postDelayed(new Runnable() {
+            public void run() {
+                mProgress.setProgress((int)(Math.random() * (100-progress) + 1) + progress);
             }
-            @Override
-            public void onFinish() {
-                Intent i = new Intent(context, Directory.class);
+        }, 1000);
+        mHandler.postDelayed(new Runnable() {
+            public void run() {
+                Intent i = new Intent(context,Directory.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
-        }.start();
+        }, 3000);
     }
 
 }
