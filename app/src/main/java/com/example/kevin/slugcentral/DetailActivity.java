@@ -71,8 +71,6 @@ public class DetailActivity extends AppCompatActivity {
 
         add.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                // TODO: send data to schedule activity to add class to schedule
-
                 //pop the activity off the stack
                 Intent i = new Intent(DetailActivity.this, ScheduleActivity.class);
                 i.putExtra("position", position);
@@ -83,9 +81,6 @@ public class DetailActivity extends AppCompatActivity {
         });
         remove.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                // TODO: send data to schedule activity to remove class from schedule
-
-
                 //pop the activity off the stack
                 Intent i = new Intent(DetailActivity.this, ScheduleActivity.class);
                 i.putExtra("position", position);

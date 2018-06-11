@@ -16,6 +16,7 @@ import java.util.StringTokenizer;
 public class ScheduleActivity extends BasicActivity {
 
     //TODO: serialize user data
+    //TODO: make detailview display course info when going from scheduleactivity to detail
 
     // Populate the week view with some events.
     public static List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
