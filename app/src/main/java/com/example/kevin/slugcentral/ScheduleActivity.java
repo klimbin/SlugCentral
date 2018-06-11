@@ -3,6 +3,7 @@ package com.example.kevin.slugcentral;
 import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekViewEvent;
 
@@ -68,7 +69,7 @@ public class ScheduleActivity extends BasicActivity {
                 startMin = Integer.parseInt(sStartTime.substring(3,5));
 
                 Log.d("Adding Class start time", sStartTime + " " + sEndTime);
-                if(sStartTime.substring(5,7).equals("PM"))
+                if(sStartTime.substring(5,7).equals("PM") && startHour < 12)
                 {
                     startHour += 12;
                 }
@@ -76,7 +77,7 @@ public class ScheduleActivity extends BasicActivity {
                 endHour = Integer.parseInt(sEndTime.substring(0,2));
                 endMin = Integer.parseInt(sEndTime.substring(3,5));
 
-                if(sEndTime.substring(5,7).equals("PM"))
+                if(sEndTime.substring(5,7).equals("PM") && endHour < 12)
                 {
                     endHour += 12;
                 }
@@ -95,7 +96,19 @@ public class ScheduleActivity extends BasicActivity {
 
         Log.d("Adding Class: ", SearchActivity.courses.get(position).getName() + " " + SearchActivity.courses.get(position).getDaysTimes());
         Log.d("Adding Class: data parsed is ", id + " " + eventTitle + " " + startHour + ":" + startMin + " - " + endHour + ":" + endMin);
+        for(int i = 0; i < events.size(); i ++)
+        {
+            if(events.get(i).getName().equals(eventTitle))
+            {
+                Toast.makeText(ScheduleActivity.this, "This class already added",
+                        Toast.LENGTH_LONG).show();
+                return events;
+            }
+        }
         switch(date) {
+            case "Tu":
+                events.add(makeEvent(10, id, eventTitle, startHour, startMin, endHour, endMin, 0));
+                break;
             case "TuTh":
             case"TuThSa":
                 events.add(makeEvent(10, id, eventTitle, startHour, startMin, endHour, endMin, 0));

@@ -23,7 +23,7 @@ import java.util.StringTokenizer;
 public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<Course> allData = new ArrayList<Course>();
-    String tURL = "https://56ad94a8.ngrok.io/api/v1.0/courses/all/2000";
+    String tURL = "https://0c333020.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
