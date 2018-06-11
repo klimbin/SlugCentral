@@ -6,7 +6,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
+import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,14 +21,14 @@ import java.util.StringTokenizer;
 
 //need android:theme="@style/AppTheme.NoActionBar" to get rid of label on one activity
 public class MainActivity extends AppCompatActivity {
-
+    private ProgressBar mProgress;
     public static ArrayList<Course> allData = new ArrayList<Course>();
     String tURL = "https://0c333020.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);
@@ -66,16 +66,14 @@ public class MainActivity extends AppCompatActivity {
         catch(JSONException e){
             e.printStackTrace();
         }
-
     }
     public void onResume(){
         super.onResume();
         final Context context = this;
         new CountDownTimer(1000, 10000){
-
             @Override
             public void onTick(long millisUntilFinished) {
-
+                mProgress.setProgress((int )(Math.random() * 50 + 1));
             }
             @Override
             public void onFinish() {
@@ -84,5 +82,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
     }
+
 }
 

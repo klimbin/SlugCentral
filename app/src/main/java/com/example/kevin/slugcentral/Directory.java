@@ -3,8 +3,8 @@ package com.example.kevin.slugcentral;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,20 +12,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Directory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     final Context context = this;
+    private Intent j;
+    private FirebaseAuth mAuth;
+    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directory);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +47,9 @@ public class Directory extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void onResume(){
@@ -51,6 +57,32 @@ public class Directory extends AppCompatActivity
         Button buttonSchedule = findViewById(R.id.buttonSchedule);
         Button buttonGE = findViewById(R.id.buttonGE);
         Button buttonMap = findViewById(R.id.buttonMap);
+        mAuth = FirebaseAuth.getInstance();
+        //get an intent from somewhere
+        try {
+            j = getIntent();
+        }
+        catch(Exception e){
+        }
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //check if there is a login
+        //if there isnt a login
+        if(currentUser == null){
+            //enable sign in button
+            navigationView.getMenu().getItem(0).setVisible(true);
+            //disable export
+            navigationView.getMenu().getItem(1).setVisible(false);
+            //disable sign out
+            navigationView.getMenu().getItem(3).setVisible(false);
+        }
+        else{
+            //disable sign in button
+            navigationView.getMenu().getItem(0).setVisible(false);
+            //enable export
+            navigationView.getMenu().getItem(1).setVisible(true);
+            //enable sign out
+            navigationView.getMenu().getItem(3).setVisible(true);
+        }
         buttonSchedule.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //pop the activity off the stack
@@ -134,7 +166,15 @@ public class Directory extends AppCompatActivity
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         } else if (id == R.id.nav_signOut) {
-
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(Directory.this, "Signed Out",
+                    Toast.LENGTH_SHORT).show();
+            //enable sign in button
+            navigationView.getMenu().getItem(0).setVisible(true);
+            //disable export
+            navigationView.getMenu().getItem(1).setVisible(false);
+            //disable sign out
+            navigationView.getMenu().getItem(3).setVisible(false);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
