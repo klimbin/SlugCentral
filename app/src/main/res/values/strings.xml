@@ -14,13 +14,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
-    <!-- Strings for FB  -->
-    <string name="facebook_app_id">1718768328205149</string>
-    <string name="fb_login_protocol_scheme">fb1718768328205149</string>
-    <!-- Twitter consumer key and secret -->
-    <string name="twitter_consumer_key" translatable="false">nJX6YMiGD1z9HFvqapFjvNwEo</string>
-    <string name="twitter_consumer_secret" translatable="false">LrWnx4L53Uzymenn1ccpeKnOZz6UTZexJHlYB2AKRAfdWrGtpu
-</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
