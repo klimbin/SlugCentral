@@ -35,7 +35,7 @@ public class DetailActivity extends AppCompatActivity {
         String status = i.getStringExtra("status");
         String seats = i.getStringExtra("seats");
         position = i.getIntExtra("position", -1);
-
+        final String temp = name;
         String caller = i.getStringExtra("caller");
 
         TextView cName = (TextView)findViewById(R.id.cName);
@@ -93,7 +93,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 //pop the activity off the stack
                 Intent i = new Intent(DetailActivity.this, ScheduleActivity.class);
+                i.putExtra("position", position);
                 i.putExtra("Action", "Remove");
+                i.putExtra("Name", temp);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }

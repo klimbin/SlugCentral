@@ -1,6 +1,7 @@
 package com.example.kevin.slugcentral;
 
 import android.content.Intent;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -30,10 +31,22 @@ public class ScheduleActivity extends BasicActivity {
             if (i.getStringExtra("Action").equals("Add")) {
                 Log.d("Adding Class w pos:", String.valueOf(position));
                 events = addClass(position, events);
-            } else {
-                events = removeClass(position, events);
             }
         }
+        else
+        {
+            String tname = i.getStringExtra("Name");
+
+            for(int j = events.size() - 1; j > 0; j--)
+            {
+                if(events.get(j).getName().equals(tname))
+                {
+                    events.remove(j);
+
+                }
+            }
+        }
+
         return events;
     }
 
@@ -243,5 +256,19 @@ public class ScheduleActivity extends BasicActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onEventClick(WeekViewEvent event, RectF eventRect) {
+        Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
+
+        Intent detailIntent = new Intent(ScheduleActivity.this, DetailActivity.class);
+
+        detailIntent.putExtra("name", event.getName());
+
+        detailIntent.putExtra("caller", "Schedule");
+        startActivity(detailIntent);
+
+
     }
 }
