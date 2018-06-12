@@ -18,8 +18,8 @@ Making a database to store all the course data.
 ## Future Plans
 * Allow users to sign in to with google and export their weekly schedule to Google Calendar. 
 * Include ability to change term and continuously update database of course data to provide real-time information.
-* Refine search bar
+* Refine search bar to allow users to filter courses by GE code, major, or open courses
 * Display requirements for each major
 
 ## Created By
-[Kevin Lim](https://github.com/klimbin), [Robert Loquinario](https://github.com/lokinario), [Thomas Wong](https://github.com/twong40), [Filip Haltmayer](https://github.com/fhaltmayer)
+[Kevin Lim](https://github.com/klimbin), [Thomas Wong](https://github.com/twong40), [Filip Haltmayer](https://github.com/fhaltmayer), [Robert Loquinario](https://github.com/lokinario)
