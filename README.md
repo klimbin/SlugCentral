@@ -10,7 +10,7 @@ The purpose of this application is to provide a convenient way for students to l
 Slug Central provides an easy way to search up classes and access course data such as the professor, location, seats open, etc. and add them to a weekly planner view. Users can also view the location of the courses they added to their planner along with their current location. Users can also check off which GE requirements they have completed and all the user data is saved on their phone.
 
 ## Made with
-Java
+Java, Python, Firebase
 
 ## Challenges faced:
 Making a database to store all the course data.
