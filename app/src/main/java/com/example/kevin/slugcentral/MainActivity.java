@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgress;
     public static ArrayList<Course> allData = new ArrayList<Course>();
     private Handler mHandler;
-    String tURL = "https://782b6c51.ngrok.io/api/v1.0/courses/all/2000";
+    String tURL = "https://7d15c4b4.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

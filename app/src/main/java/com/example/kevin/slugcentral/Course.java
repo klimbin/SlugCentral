@@ -69,14 +69,5 @@ public class Course implements Serializable{
     public void setStatus(String status){ this.status = status;}
 
 
-    // for detail view
-    // public boolean timeConflicts(Course A, Course B) { return true; }
 
-    // public int getColor() {
-    //     return mColor;
-    // }
-
-    // public void setColor(int color) {
-    //     this.mColor = color;
-    // }
 }

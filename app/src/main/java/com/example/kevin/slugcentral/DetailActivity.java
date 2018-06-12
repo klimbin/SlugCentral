@@ -143,7 +143,6 @@ public class DetailActivity extends AppCompatActivity {
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(i);
                             return;
-
                         }
                     }
                     temp.put("name", name);

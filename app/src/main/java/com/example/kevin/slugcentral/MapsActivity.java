@@ -161,49 +161,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
 
-//        for(int j = events.size() - 1; j > 0; j--)
-//        {
-//
-////        for(int i = 0; i < arrayList.size(); i++) {
-//            try {
-////                addresses = geocoder.getFromLocationName(Course.getClassroom(), 1);
-//                addresses = geocoder.getFromLocationName(events.get(j).getLocation(), 1);
-//            }
-//            catch(IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            if (addresses != null && addresses.size() > 0) {
-//                double latitude = addresses.get(0).getLatitude();
-//                double longitude = addresses.get(0).getLongitude();
-//                Log.d("LOCATION", "adding marker for class w/ location: " + latitude + longitude);
-//                LatLng classPos = new LatLng(latitude, longitude);
-////                Marker marker = mMap.addMarker(new MarkerOptions()
-////                                        .position(classPos)
-////                                        .title(Course.getName())
-////                                        .snippet(Course.getClassroom() + "\n" + Course.getMeetingDays()) + " " +
-////                                                Course.getStartTime() + " - " + Course.getEndTime());
-//                Marker marker = mMap.addMarker(new MarkerOptions()
-//                        .position(classPos)
-//                        .title(events.get(j).getName()).snippet(events.get(j).getLocation()));
-//            }
-//        }
 
-//        try {
-//            addresses = geocoder.getFromLocationName("Humn Lecture Hall", 1);
-//        }
-//        catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//        if (addresses.size() > 0) {
-//            double latitude = addresses.get(0).getLatitude();
-//            double longitude = addresses.get(0).getLongitude();
-//            LatLng classPos = new LatLng(latitude, longitude);
-//            Marker marker = mMap.addMarker(new MarkerOptions()
-//                    .position(classPos)
-//                    .title("CLASS NAME")
-//                    .snippet("Humn Lecture Hall" + "\n" + "MoWeFr 1:20 - 2:45"));
-//        }
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 

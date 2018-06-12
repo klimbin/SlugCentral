@@ -69,55 +69,7 @@ public abstract class BasicActivity extends AppCompatActivity implements WeekVie
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        switch (id){
-//            case R.id.add:
-//                Intent i = new Intent(BasicActivity.this, SearchActivity.class);
-//                startActivity(i);
-//                return true;
-//        }
-//            case R.id.action_day_view:
-//                if (mWeekViewType != TYPE_DAY_VIEW) {
-//                    item.setChecked(!item.isChecked());
-//                    mWeekViewType = TYPE_DAY_VIEW;
-//                    mWeekView.setNumberOfVisibleDays(1);
-//
-//                    // Lets change some dimensions to best fit the view.
-//                    mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
-//                    mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-//                    mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-//                }
-//                return true;
-//            case R.id.action_three_day_view:
-//                if (mWeekViewType != TYPE_THREE_DAY_VIEW) {
-//                    item.setChecked(!item.isChecked());
-//                    mWeekViewType = TYPE_THREE_DAY_VIEW;
-//                    mWeekView.setNumberOfVisibleDays(3);
-//
-//                    // Lets change some dimensions to best fit the view.
-//                    mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
-//                    mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-//                    mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-//                }
-//                return true;
-//            case R.id.action_week_view:
-//                if (mWeekViewType != TYPE_WEEK_VIEW) {
-//                    item.setChecked(!item.isChecked());
-//                    mWeekViewType = TYPE_WEEK_VIEW;
-//                    mWeekView.setNumberOfVisibleDays(5);
-//
-//                    // Lets change some dimensions to best fit the view.
-//                    mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
-//                    mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-//                    mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-//                }
-//                return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
     /**
      * Set up a date time interpreter which will show short date values when in week view and long

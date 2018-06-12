@@ -82,36 +82,6 @@ public class ScheduleActivity extends BasicActivity {
             }
         }
 
-//        Intent i = getIntent();
-//        int position = i.getIntExtra("position", -1);
-//        if (position != -1) {
-//            if (i.getStringExtra("Action").equals("Add")) {
-//                Log.d("Adding Class w pos:", String.valueOf(position));
-//                events = addClass(position, events);
-//            }
-//        }
-//        else
-//        {
-//            String tname = i.getStringExtra("Name");
-//
-//            for(int j = events.size() - 1; j > 0; j--)
-//            {
-//                if(events.get(j).getName().equals(tname))
-//                {
-//                    events.remove(j);
-//
-//                }
-//            }
-//            if(events.size() == 1)
-//            {
-//                if(events.get(0).getName().equals(tname))
-//                {
-//                    events.remove(0);
-//
-//                }
-//            }
-//        }
-
         return events;
     }
 
@@ -183,15 +153,7 @@ public class ScheduleActivity extends BasicActivity {
         }
 
         Log.d("Adding Class: ", eventTitle + " " + id + " " + daysTimes);
-//        for(int i = 0; i < events.size(); i ++)
-//        {
-//            if(events.get(i).getId() == Long.valueOf(id))
-//            {
-//                Toast.makeText(ScheduleActivity.this, "This class has already been added",
-//                        Toast.LENGTH_LONG).show();
-//                return events;
-//            }
-//        }
+
         switch(date) {
             case "M":
                 events.add(makeEvent(9, id, eventTitle, location, startHour, startMin, endHour, endMin, 4));
