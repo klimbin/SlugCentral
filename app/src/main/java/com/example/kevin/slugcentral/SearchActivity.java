@@ -56,9 +56,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    course = new Course();
-                    course = ds.getValue(Course.class);
-                    courses.add(course);
+//                    course = new Course();
+//                    course = ds.getValue(Course.class);
+//                    courses.add(course);
                 }
 
 
