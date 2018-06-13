@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.ProgressBar;
 
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +27,12 @@ import java.util.StringTokenizer;
 //need android:theme="@style/AppTheme.NoActionBar" to get rid of label on one activity
 public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgress;
+    private DatabaseReference mDatabase;
     public static ArrayList<Course> allData = new ArrayList<Course>();
+    String tURL = "https://d1d2920b.ngrok.io/api/v1.0/courses/all/2000";
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("classes");
     private Handler mHandler;
-    String tURL = "https://7d15c4b4.ngrok.io/api/v1.0/courses/all/2000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +73,16 @@ public class MainActivity extends AppCompatActivity {
                 String status = jsonobject.getString("status");
 
                 Course temp = new Course(classID, dayTimes, className, instructor, location, enrolled, status);
+                myRef.child(classID).setValue(temp, new DatabaseReference.CompletionListener() {
 
+                    public void onComplete(DatabaseError dbError, DatabaseReference dbRef) {
+                        if (dbError != null) {
+                            System.out.println("Data could not be saved. " + dbError);
+                        } else {
+                            System.out.println("Data saved successfully.");
+                        }
+                    }
+                });
                 allData.add(temp);
             }
         }
