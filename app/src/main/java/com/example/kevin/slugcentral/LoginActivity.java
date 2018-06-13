@@ -439,6 +439,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             //do something if found a user
+            LoginManager.getInstance().logOut();
         } else {
             //do something if couldnt find someone
         }
