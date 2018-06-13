@@ -13,18 +13,10 @@ android {
     }
     buildTypes {
         debug {
-            resValue 'string', "fb_key",SlugCentral_FB_KEY
-            resValue 'string', "fb_secret",SlugCentral_FB_SECRET
-            resValue 'string', "tw_key",SlugCentral_TW_KEY
-            resValue 'string', "tw_secret",SlugCentral_TW_SECRET
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue 'string', "fb_key",SlugCentral_FB_KEY
-            resValue 'string', "fb_secret",SlugCentral_FB_SECRET
-            resValue 'string', "tw_key",SlugCentral_TW_KEY
-            resValue 'string', "tw_secret",SlugCentral_TW_SECRET
         }
     }
 }

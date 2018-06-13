@@ -136,4 +136,8 @@
     <string name="Reg">Create New Account</string>
     <string name="display_name">Display Name</string>
     <string name="loading">Loading...</string>
+    <string name="fb_key">1718768328205149</string>
+    <string name="fb_secret">5cac125c2c3fcb288293728e4139f106</string>
+    <string name="tw_key">nJX6YMiGD1z9HFvqapFjvNwEo</string>
+    <string name="tw_secret">LrWnx4L53Uzymenn1ccpeKnOZz6UTZexJHlYB2AKRAfdWrGtpu</string>
 </resources>
