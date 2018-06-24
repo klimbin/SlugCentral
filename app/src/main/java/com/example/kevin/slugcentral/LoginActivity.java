@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity{
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton G_login;
+    private Boolean gLogin;
     final Context context = this;
     private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
@@ -118,6 +119,7 @@ public class LoginActivity extends AppCompatActivity{
                 .build();
         Twitter.initialize(config);
         setContentView(R.layout.activity_login);
+        gLogin = false;
         // Set up the login form.
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -305,6 +307,7 @@ public class LoginActivity extends AppCompatActivity{
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                gLogin = true;
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG3, "Google sign in failed", e);
