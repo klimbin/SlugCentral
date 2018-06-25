@@ -60,5 +60,12 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:4.33.0'
     // Required only if Twitter login support is required
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
+    implementation 'pub.devrel:easypermissions:0.3.0'
+    implementation ('com.google.api-client:google-api-client-android:1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    implementation('com.google.apis:google-api-services-calendar:v3-rev328-1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
 }
 apply plugin: 'com.google.gms.google-services'
